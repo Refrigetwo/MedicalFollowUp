@@ -7,7 +7,7 @@ import Doc from './screen/Doc.js';
 import Mine from './screen/Mine.js';
 import NewsArt from "./screen/NewsArt";
 
-export const NewsStack= createStackNavigator({
+const NewsStack= createStackNavigator({
     News:News,
     NewsArt:NewsArt
 });
@@ -29,12 +29,12 @@ const TabNavigator = createMaterialTopTabNavigator({
     随诊: FollowUpStack,
     档案: DocStack,
     我的: MineStack
-}, {tabBarOptions:{
-            indicatorStyle:{
-                backgroundColor: "white",
-            }
+}, {swipeEnabled: false,
+    tabBarOptions:{
+        indicatorStyle:{
+            backgroundColor: "white",
         }
-
+    }
 });
 
 export default createAppContainer(TabNavigator);
