@@ -9,7 +9,7 @@ export default class FollowUp extends React.Component {
     render() {
         return (
             <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                <Text>Doc</Text>
+                <Text>www</Text>
                 <Button title='News' onPress={()=>this.props.navigation.navigate('News')}/>
             </View>
         );

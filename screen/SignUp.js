@@ -34,7 +34,7 @@ export default class SignUp extends React.Component{
                     placeholder={'密码'}
                     placeholderTextColor={'#6b6e72'}
                 />
-                <Button title='注册' onPress={()=>this.props.navigation.navigate('Mine')}/>
+                <Button title='注册' onPress={()=>this.props.navigation.navigate('Mine',)}/>
             </View>
 
         );

@@ -45,6 +45,9 @@ export default class News extends React.Component {
             </View>
         );
     }
+    _separator = () => {
+        return <View style={{height:2,backgroundColor:'#b5b5b5'}}/>;
+    }
     render() {
         return (
             <View style={styles.container}>
@@ -57,14 +60,12 @@ export default class News extends React.Component {
                 </View>
                 <View>
                     <FlatList
+                        ItemSeparatorComponent={this._separator}
                         data={this.state.data}
                         renderItem={this.renderMovie}
                         style={styles.list}
                         keyExtractor={(item, index) => 'key'+index}
                      />
-                </View>
-                <View style={styles.empty}>
-                    <Text>11111</Text>
                 </View>
             </View>
         );
