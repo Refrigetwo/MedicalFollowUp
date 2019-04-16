@@ -10,7 +10,7 @@ export default class SignUp extends React.Component{
         };
     }
     static navigationOptions={
-        title: '登录',
+        title: '注册',
         headerStyle: {
             backgroundColor: '#2e74ff',
         },

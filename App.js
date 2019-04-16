@@ -1,5 +1,4 @@
 import React,{ Component } from 'react';
-import { Text, View } from 'react-native';
 import { createMaterialTopTabNavigator, createAppContainer, createStackNavigator } from 'react-navigation';
 import News from './screen/News.js';
 import FollowUp from './screen/FollowUp.js';
@@ -22,11 +21,11 @@ const DocStack= createStackNavigator({
     Doc:Doc,
 });
 
-const MineStack= createStackNavigator(({
+const MineStack= createStackNavigator({
     Mine: Mine,
     SignUp: SignUp,
     SignIn: SignIn
-}));
+});
 
 MineStack.navigationOptions = ({ navigation }) => {
     let tabBarVisible = true;
@@ -51,6 +50,17 @@ const TabNavigator = createMaterialTopTabNavigator({
     }
 });
 
+{/*const app= createStackNavigator({
+    home:TabNavigator,
+    News:News,
+    NewsArt:NewsArt,
+    FollowUp:FollowUp,
+    Doc:Doc,
+    Mine: Mine,
+    SignUp: SignUp,
+    SignIn: SignIn
+});
+*/}
 export default createAppContainer(TabNavigator);
 
 
