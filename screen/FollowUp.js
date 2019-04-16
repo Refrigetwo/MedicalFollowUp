@@ -1,13 +1,46 @@
 import React from 'react';
-import { Text, View, StyleSheet, Dimensions } from 'react-native';
-import { Divider } from 'react-native-elements';
+import {Text, View, StyleSheet, Dimensions, TimePickerAndroid, Button, TouchableHighlight} from 'react-native';
 
 export default class FollowUp extends React.Component {
+    constructor(props){
+        super(props);
+        this.state={
+            hour1:'00',
+            minute1:'00',
+            hour2:'00',
+            minute2:'00'
+        };
+        this._onPress1=this._onPress1.bind(this);
+        this._onPress2=this._onPress2.bind(this);
+    };
     static navigationOptions={
         header:null,
     };
 
-    render() {
+    _onPress1(){
+        TimePickerAndroid.open()
+            .then(({action, hour, minute})=>{
+                if(action !== TimePickerAndroid.dismissedAction){
+                    this.setState({
+                        hour1:hour,
+                        minute1:minute
+                    });
+                }
+            })
+    }
+    _onPress2(){
+        TimePickerAndroid.open()
+            .then(({action, hour, minute})=>{
+                if(action !== TimePickerAndroid.dismissedAction){
+                    this.setState({
+                        hour2:hour,
+                        minute2:minute
+                    });
+                }
+            })
+    }
+
+    render(){
         return (
            <View style={styles.container}>
                <View style={styles.bushucontainer}>
@@ -28,7 +61,15 @@ export default class FollowUp extends React.Component {
                <View style={styles.line}/>
                <View style={styles.normalcontainer}>
                    <Text style={styles.text}>睡眠时间</Text>
-                   <Text style={styles.text}>100</Text>
+                   <View style={{flexDirection: 'row'}}>
+                       <TouchableHighlight underlayColor={'#999999'} onPress={this._onPress1}>
+                           <Text style={styles.text}>{this.state.hour1 + ':' + this.state.minute1}</Text>
+                       </TouchableHighlight>
+                       <Text style={styles.text}>—</Text>
+                       <TouchableHighlight underlayColor={'#999999'} onPress={this._onPress2}>
+                           <Text style={styles.text}>{this.state.hour2 + ':' + this.state.minute2}</Text>
+                       </TouchableHighlight>
+                   </View>
                </View>
                <View style={styles.line}/>
            </View>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, Button } from 'react-native';
+import {Text, View, TouchableHighlight} from 'react-native';
 import SignUp from './SignUp.js'
 
 export default class FollowUp extends React.Component {
@@ -8,9 +8,11 @@ export default class FollowUp extends React.Component {
     };
     render() {
         return (
-            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                <Text>Mine</Text>
-                <Button title='SignUp' onPress={()=>this.props.navigation.navigate('SignUp')}/>
+            <View style={{padding:20, width:100,height:50 }}>
+                <TouchableHighlight underlayColor={'#999999'} onPress={()=>this.props.navigation.navigate('SignUp')}>
+                    <Text style={{fontSize:27}}>注册</Text>
+                </TouchableHighlight>
+
             </View>
         );
     }
