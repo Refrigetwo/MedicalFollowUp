@@ -6,6 +6,8 @@ import FollowUp from './screen/FollowUp.js';
 import Doc from './screen/Doc.js';
 import Mine from './screen/Mine.js';
 import NewsArt from "./screen/NewsArt";
+import SignUp from "./screen/SignUp";
+import SignIn from "./screen/SignIn";
 
 const NewsStack= createStackNavigator({
     News:News,
@@ -22,7 +24,19 @@ const DocStack= createStackNavigator({
 
 const MineStack= createStackNavigator(({
     Mine: Mine,
+    SignUp: SignUp,
+    SignIn: SignIn
 }));
+
+MineStack.navigationOptions = ({ navigation }) => {
+    let tabBarVisible = true;
+    if (navigation.state.index > 0) {
+        tabBarVisible = false;
+    }
+    return {
+        tabBarVisible,
+    };
+};
 
 const TabNavigator = createMaterialTopTabNavigator({
     资讯: NewsStack,

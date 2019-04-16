@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, Button, Image, Dimensions, StyleSheet, FlatList } from 'react-native';
+import { Text, View, Image, Dimensions, StyleSheet, FlatList } from 'react-native';
 import Swiper from 'react-native-swiper';
 const {width} = Dimensions.get('window');
 var REQUEST_URL = "http://upload-test-refrige.oss-cn-beijing.aliyuncs.com/artical.json"
@@ -64,7 +64,7 @@ export default class News extends React.Component {
                      />
                 </View>
                 <View style={styles.empty}>
-                    <Text>wocao</Text>
+                    <Text>11111</Text>
                 </View>
             </View>
         );
