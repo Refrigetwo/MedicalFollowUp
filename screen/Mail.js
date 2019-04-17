@@ -2,8 +2,7 @@ import React from 'react';
 import { Text, View, Button } from 'react-native';
 import News from './News.js';
 
-
-export default class FollowUp extends React.Component {
+export default class Mail extends React.Component {
     static navigationOptions={
         header:null,
     };

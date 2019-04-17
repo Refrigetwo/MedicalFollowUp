@@ -1,5 +1,7 @@
 import React from 'react';
-import {Text, View, StyleSheet, Dimensions, TimePickerAndroid, Button, TouchableHighlight} from 'react-native';
+import {Text, View, StyleSheet, Dimensions, TimePickerAndroid, TouchableHighlight, TouchableOpacity} from 'react-native';
+import Icon from 'react-native-vector-icons/Feather';
+import Mail from './Mail';
 
 export default class FollowUp extends React.Component {
     constructor(props){
@@ -72,7 +74,11 @@ export default class FollowUp extends React.Component {
                    </View>
                </View>
                <View style={styles.line}/>
+               <TouchableOpacity style={styles.floatbutton} onPress={()=>this.props.navigation.navigate('Mail')}>
+                   <Icon name="mail"  size={30} color="#01a699" />
+               </TouchableOpacity>
            </View>
+
         );
     }
 }
@@ -112,5 +118,18 @@ const styles=StyleSheet.create({
     },
     text:{
         fontSize:27
+    },
+    floatbutton:{
+        borderWidth:1,
+        borderColor:'rgba(0,0,0,0.2)',
+        alignItems:'center',
+        justifyContent:'center',
+        width:70,
+        position: 'absolute',
+        bottom: 30,
+        right: 30,
+        height:70,
+        backgroundColor:'#fff',
+        borderRadius:100,
     }
 });

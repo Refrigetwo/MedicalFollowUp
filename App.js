@@ -7,6 +7,7 @@ import Mine from './screen/Mine.js';
 import NewsArt from "./screen/NewsArt";
 import SignUp from "./screen/SignUp";
 import SignIn from "./screen/SignIn";
+import Mail from './screen/Mail'
 
 const NewsStack= createStackNavigator({
     News:News,
@@ -15,6 +16,7 @@ const NewsStack= createStackNavigator({
 
 const FollowUpStack= createStackNavigator({
     FollowUp:FollowUp,
+    Mail:Mail
 });
 
 const DocStack= createStackNavigator({
@@ -55,6 +57,7 @@ const TabNavigator = createMaterialTopTabNavigator({
     News:News,
     NewsArt:NewsArt,
     FollowUp:FollowUp,
+    Mail:Mail,
     Doc:Doc,
     Mine: Mine,
     SignUp: SignUp,
