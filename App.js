@@ -7,7 +7,8 @@ import Mine from './screen/Mine.js';
 import NewsArt from "./screen/NewsArt";
 import SignUp from "./screen/SignUp";
 import SignIn from "./screen/SignIn";
-import Mail from './screen/Mail'
+import Mail from './screen/Mail';
+import addDoc from './screen/addDoc';
 
 const NewsStack= createStackNavigator({
     News:News,
@@ -21,6 +22,7 @@ const FollowUpStack= createStackNavigator({
 
 const DocStack= createStackNavigator({
     Doc:Doc,
+    addDoc:addDoc
 });
 
 const MineStack= createStackNavigator({
