@@ -1,6 +1,7 @@
 import React from 'react';
 import {Alert, Button, Text, View, StyleSheet, Image} from 'react-native';
 import ImagePicker from 'react-native-image-picker';
+import upload from '../third_party_lib/upload';
 
 var options = {
     title: '请选择图片来源',
