@@ -2,6 +2,7 @@ import React from 'react';
 import {Alert, Button, Text, View, StyleSheet, Image} from 'react-native';
 import ImagePicker from 'react-native-image-picker';
 import upload from '../third_party_lib/upload';
+import RNFetchBlob from 'react-native-fetch-blob'
 
 var options = {
     title: '请选择图片来源',
@@ -13,6 +14,8 @@ var options = {
         path: 'images'
     }
 };
+
+
 
 export default class addDoc extends React.Component {
     static navigationOptions={
@@ -28,8 +31,11 @@ export default class addDoc extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            avatarSource: null
+            avatarSource: null,
+            fPath:''
         };
+        this.choosePic=this.choosePic.bind(this);
+        this.Upload=this.Upload.bind(this);
     }
 
     choosePic() {
@@ -49,19 +55,34 @@ export default class addDoc extends React.Component {
                 this.setState({
                     avatarSource: source
                 });
+                RNFetchBlob.fs.stat(this.state.avatarSource.uri)
+                    .then((stats) => {this.setState({
+                        fPath:'file:/'+stats.path
+                    })});
+
             }
         });
     }
 
+    Upload(){
+        upload(
+            '0138.jpg',
+            'image/jpg',
+            this.state.fPath)
+            .then((resp) => {
+                // your code here
+            })
+    }
 
     render(){
         return (
             <View>
                 <Text style={styles.item} onPress={this.choosePic.bind(this)}>选择照片</Text>
                 <Image source={this.state.avatarSource} style={styles.image} />
+                <Button title='上传' onPress={this.Upload}/>
                 <Button title='测试'
                         onPress={ () => {
-                            Alert.alert( this.state.avatarSource.uri);
+                            Alert.alert( this.state.fPath);
                         }}/>
             </View>
         );
