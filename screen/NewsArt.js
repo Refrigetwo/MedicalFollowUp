@@ -1,15 +1,22 @@
 import React from 'react';
-import { Text, View } from 'react-native';
+import { Text, View, WebView } from 'react-native';
 
 export default class NewsArt extends React.Component {
     static navigationOptions={
-        header:null,
+        title: '文章详情',
+        headerStyle: {
+            backgroundColor: '#2e74ff',
+        },
+        headerTintColor: '#fff',
+        headerTitleStyle: {
+            fontWeight: 'bold',
+        },
     };
     render() {
         return (
-            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                <Text>Articals</Text>
-            </View>
+        <WebView javaScriptEnabled={true} source={{uri:"http://blog.refrigetwo.moe/exp1.html",method: "get"}}>
+
+        </WebView>
         );
     }
 }

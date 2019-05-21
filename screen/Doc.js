@@ -2,6 +2,8 @@ import React from 'react';
 import {Text, View, Button, Dimensions, FlatList, Image, StyleSheet, TouchableOpacity} from 'react-native';
 import Icon from "react-native-vector-icons/FontAwesome5";
 const {width} = Dimensions.get('window');
+var REQUEST_URL = "http://upload-test-refrige.oss-cn-beijing.aliyuncs.com/artical.json";
+var REQUEST_URL_NAME="http://10.0.2.2:3000/users/queryAll"
 
 export default class FollowUp extends React.Component {
     static navigationOptions={
@@ -10,24 +12,25 @@ export default class FollowUp extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            name:'',
-            sex:'',
-            sym:'',
+            name:'121',
+            sex:'212',
+            sym:'qweqweqw',
             data:[],
             loaded:false,
         };
         this.fetchData = this.fetchData.bind(this);
+        this.renderMovie = this.renderMovie.bind(this);
         //this.state = this.state.bind(this);
     }
     componentDidMount() {
         this.fetchData();
     }
     fetchData(){
-        fetch(REQUEST_URL)
+        fetch("http://10.0.2.2:3000/users/queryAll")
             .then(response=>response.json())
             .then((responseData)=>{
                 this.setState({
-                    data:this.state.data.concat(responseData.movies),
+                    data:this.state.data.concat(responseData),
                     loaded:true,
                 });
             });
@@ -36,13 +39,12 @@ export default class FollowUp extends React.Component {
     renderMovie({item}){
         return(
             <View style={styles.Flatcontainer}>
-                <Image
-                    source={{uri:item.posters.thumbnail}}
-                    style={styles.thumbnail}
-                />
                 <View style={styles.rightContainer}>
-                    <Text style={styles.title}>{item.title}</Text>
-                    <Text style={styles.info}>{item.info}</Text>
+                    <TouchableOpacity onPress={()=>this.props.navigation.navigate('Mail')}>
+                        <Icon name="pen"  size={20} color="#000000" />
+                    </TouchableOpacity>
+                    <Text style={styles.title}>{item.name}</Text>
+                    <Text style={styles.info}>{item.sex}</Text>
                 </View>
             </View>
         );
@@ -53,21 +55,26 @@ export default class FollowUp extends React.Component {
     render() {
         return (
             <View style={styles.container}>
-                <View style={styles.topContainer}>
-                    <View style={styles.topContainerLeft}>
-                        <Text style={}>{this.state.name}</Text>
-                        <Text style={}>{this.state.sex}</Text>
-                        <Text style={}>{this.state.sym}</Text>
-                    </View>
-                    <View style={styles.buttonRight}>
-                        <TouchableOpacity onPress={()=>this.props.navigation.navigate('Mail')}>
+                <View>
+                    <View style={{padding:15,
+                        flexDirection:'row',
+                        justifyContent:'space-between',
+                        width:Dimensions.get('window').width,}}>
+                        <View>
+                            <Text style={{fontSize: 25}} >{this.state.name}</Text>
+                            <Text style={{fontSize: 20}}>{this.state.sex}</Text>
+                            <Text style={{fontSize: 20}}>{this.state.sym}</Text>
+                        </View>
+                        <View>
+                            <TouchableOpacity onPress={()=>this.props.navigation.navigate('NewsArt')}>
                             <Icon name="pen"  size={20} color="#000000" />
-                        </TouchableOpacity>
+                            </TouchableOpacity>
+                        </View>
                     </View>
+                    <View style={{height:2,backgroundColor:'#b5b5b5'}}/>
+                    <Button title='添加检查报告' onPress={()=>this.props.navigation.navigate('addDoc')}/>
+                    <View style={{height:2,backgroundColor:'#b5b5b5'}}/>
                 </View>
-                <View style={{height:2,backgroundColor:'#b5b5b5'}}/>
-                <Button title='添加检查报告' onPress={()=>this.props.navigation.navigate('addDoc')}/>
-                <View style={{height:2,backgroundColor:'#b5b5b5'}}/>
                 <View>
                     <FlatList
                         ItemSeparatorComponent={this._separator}
@@ -97,5 +104,38 @@ const styles=StyleSheet.create({
     buttonRight:{
 
     },
-
+    Flatcontainer:{
+        padding:8,
+        flex:1,
+        width:Dimensions.get('window').width,
+        flexDirection:"row",
+        justifyContent:"center",
+        alignItems:"flex-start",
+        backgroundColor:"#FFFFFF"
+    },
+    thumbnail:{
+        width:200,
+        height:200
+    },
+    rightContainer:{
+        flex:1,
+        flexDirection:'column',
+        justifyContent:"flex-start",
+        alignItems:'flex-end'
+    },
+    title:{
+        fontSize:20,
+        marginBottom:8,
+        textAlign: "right",
+    },
+    info:{
+        textAlign: "right",
+    },
+    list:{
+        backgroundColor:"#FFFFFF",
+        height:50,
+    },
+    empty:{
+        height:80
+    }
 });

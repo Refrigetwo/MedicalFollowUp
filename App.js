@@ -9,6 +9,7 @@ import SignUp from "./screen/SignUp";
 import SignIn from "./screen/SignIn";
 import Mail from './screen/Mail';
 import addDoc from './screen/addDoc';
+import editInfo from './screen/editInfo';
 
 const NewsStack= createStackNavigator({
     News:News,
@@ -22,7 +23,8 @@ const FollowUpStack= createStackNavigator({
 
 const DocStack= createStackNavigator({
     Doc:Doc,
-    addDoc:addDoc
+    addDoc:addDoc,
+    editInfo:editInfo
 });
 
 const MineStack= createStackNavigator({
