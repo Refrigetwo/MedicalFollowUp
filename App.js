@@ -53,6 +53,16 @@ FollowUpStack.navigationOptions = ({ navigation }) => {
     };
 };
 
+DocStack.navigationOptions = ({ navigation }) => {
+    let tabBarVisible = true;
+    if (navigation.state.index > 0) {
+        tabBarVisible = false;
+    }
+    return {
+        tabBarVisible,
+    };
+};
+
 const TabNavigator = createMaterialTopTabNavigator({
     资讯: NewsStack,
     随诊: FollowUpStack,

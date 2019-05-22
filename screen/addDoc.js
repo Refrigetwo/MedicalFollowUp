@@ -1,5 +1,5 @@
 import React from 'react';
-import {Alert, Button, Text, View, StyleSheet, Image} from 'react-native';
+import {Alert, Button, Text, View, StyleSheet, Image, Picker} from 'react-native';
 import ImagePicker from 'react-native-image-picker';
 import upload from '../third_party_lib/upload';
 import RNFetchBlob from 'react-native-fetch-blob'
@@ -11,7 +11,7 @@ var options = {
     chooseFromLibraryButtonTitle:'相册图片',
     storageOptions: {
         skipBackup: true,
-        path: 'images'
+        path: 'images',
     }
 };
 
@@ -32,10 +32,17 @@ export default class addDoc extends React.Component {
         super(props);
         this.state = {
             avatarSource: null,
-            fPath:''
+            fPath:'',
+            sym:'',
+            userid:'3',
+            time:'',
+            date:'',
         };
         this.choosePic=this.choosePic.bind(this);
         this.Upload=this.Upload.bind(this);
+        this.getTime=this.getTime.bind(this);
+        this.getDate=this.getDate.bind(this);
+        this.save=this.save.bind(this);
     }
 
     choosePic() {
@@ -65,25 +72,63 @@ export default class addDoc extends React.Component {
     }
 
     Upload(){
+        var Time=this.getTime();
+        this.setState({
+            time:Time
+        });
         upload(
-            '0138.jpg',
+            Time+'.jpg',
             'image/jpg',
             this.state.fPath)
             .then((resp) => {
-                // your code here
+                Alert.alert('上传成功');
             })
+    }
+
+    getTime(){
+        let date = new Date();
+        let h=date.getHours();
+        h = h < 10 ? ('0' + h) : h;
+        let m=date.getMinutes();
+        m = m < 10 ? ('0' + m) : m;
+        let second = date.getSeconds();
+        second = second < 10 ? ('0' + second) : second;
+        return this.state.userid + h +m + second;
+    }
+
+    getDate(){
+        let date = new Date();
+        let month = date.getMonth() + 1;
+        month = month < 10 ? ('0' + month) : month;
+        let d = date.getDate();
+        d = d < 10 ? ('0' + d) : d;
+        return month+d;
+    }
+
+    save(){
+        var request_url='http://10.0.2.2:3000/doc/add?date='+this.getDate()+'&sym='+this.state.sym+'&pic=https://upload-test-refrige.oss-cn-beijing.aliyuncs.com/'+this.state.time+'.jpg&userid='+this.state.userid;
+        fetch(request_url, {
+            method: 'GET',
+        });
+        this.props.navigation.navigate('Doc');
     }
 
     render(){
         return (
             <View>
+                <Picker
+                    style={styles.picker}
+                    onValueChange={(itemValue, itemIndex) => this.setState({sym: itemValue})}>
+                    <Picker.Item label="检查结果单" value="检查结果单" />
+                    <Picker.Item label="X光片" value="X光片" />
+                    <Picker.Item label="处方" value="处方" />
+                    <Picker.Item label="手术通知单" value="手术通知单" />
+                </Picker>
                 <Text style={styles.item} onPress={this.choosePic.bind(this)}>选择照片</Text>
                 <Image source={this.state.avatarSource} style={styles.image} />
                 <Button title='上传' onPress={this.Upload}/>
-                <Button title='测试'
-                        onPress={ () => {
-                            Alert.alert( this.state.fPath);
-                        }}/>
+                <Button title='保存'
+                        onPress={this.save}/>
             </View>
         );
     }
@@ -93,6 +138,13 @@ const styles = StyleSheet.create({
     container:{
         flex: 1,
         marginTop:25
+    },
+    picker:{
+        margin:15,
+        height:30,
+        padding:6,
+        borderColor:'#ddd',
+        textAlign:'center'
     },
     item:{
         margin:15,

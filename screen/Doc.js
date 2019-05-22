@@ -26,7 +26,7 @@ export default class FollowUp extends React.Component {
         this.fetchData();
     }
     fetchData(){
-        fetch("http://10.0.2.2:3000/users/queryAll")
+        fetch("http://10.0.2.2:3000/doc/query?id=3")
             .then(response=>response.json())
             .then((responseData)=>{
                 this.setState({
@@ -39,12 +39,17 @@ export default class FollowUp extends React.Component {
     renderMovie({item}){
         return(
             <View style={styles.Flatcontainer}>
+                <Image
+                    source={{uri:item.pic}}
+                    style={styles.thumbnail}
+                />
                 <View style={styles.rightContainer}>
-                    <TouchableOpacity onPress={()=>this.props.navigation.navigate('Mail')}>
+                   <TouchableOpacity onPress={()=>this.props.navigation.navigate('Mail')}>
                         <Icon name="pen"  size={20} color="#000000" />
                     </TouchableOpacity>
-                    <Text style={styles.title}>{item.name}</Text>
-                    <Text style={styles.info}>{item.sex}</Text>
+
+                    <Text style={styles.title}>{item.sym}</Text>
+                    <Text style={styles.info}>{item.date}</Text>
                 </View>
             </View>
         );
@@ -75,7 +80,7 @@ export default class FollowUp extends React.Component {
                     <Button title='添加检查报告' onPress={()=>this.props.navigation.navigate('addDoc')}/>
                     <View style={{height:2,backgroundColor:'#b5b5b5'}}/>
                 </View>
-                <View>
+                <View style={{height:455}}>
                     <FlatList
                         ItemSeparatorComponent={this._separator}
                         data={this.state.data}
