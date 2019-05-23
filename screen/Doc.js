@@ -3,7 +3,7 @@ import {Text, View, Button, Dimensions, FlatList, Image, StyleSheet, TouchableOp
 import Icon from "react-native-vector-icons/FontAwesome5";
 const {width} = Dimensions.get('window');
 var REQUEST_URL = "http://upload-test-refrige.oss-cn-beijing.aliyuncs.com/artical.json";
-var REQUEST_URL_NAME="http://10.0.2.2:3000/users/queryAll"
+var REQUEST_URL_NAME="http://10.206.40.5:3000/users/queryAll"
 
 export default class FollowUp extends React.Component {
     static navigationOptions={
@@ -26,7 +26,7 @@ export default class FollowUp extends React.Component {
         this.fetchData();
     }
     fetchData(){
-        fetch("http://10.0.2.2:3000/doc/query?id=3")
+        fetch("http://10.206.40.5:3000/doc/query?id=3")
             .then(response=>response.json())
             .then((responseData)=>{
                 this.setState({
@@ -66,7 +66,7 @@ export default class FollowUp extends React.Component {
                         justifyContent:'space-between',
                         width:Dimensions.get('window').width,}}>
                         <View>
-                            <Text style={{fontSize: 25}} >{this.state.name}</Text>
+                            <Text style={{fontSize: 25}}>{this.state.name}</Text>
                             <Text style={{fontSize: 20}}>{this.state.sex}</Text>
                             <Text style={{fontSize: 20}}>{this.state.sym}</Text>
                         </View>

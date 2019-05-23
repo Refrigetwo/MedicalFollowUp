@@ -45,6 +45,7 @@ export default class SignUp extends React.Component {
                     onChangeText={(text) => this.setState({pass:text})}
                     placeholder={'密码'}
                     placeholderTextColor={'#6b6e72'}
+                    secureTextEntry={true}
                 />
                 <Button title='测试'
                         onPress={ () => {
