@@ -34,7 +34,7 @@ export default class addDoc extends React.Component {
             avatarSource: null,
             fPath:'',
             sym:'',
-            userid:'3',
+            user:'',
             time:'',
             date:'',
         };
@@ -43,6 +43,13 @@ export default class addDoc extends React.Component {
         this.getTime=this.getTime.bind(this);
         this.getDate=this.getDate.bind(this);
         this.save=this.save.bind(this);
+    }
+
+    componentDidMount() {
+        var Time=this.getTime();
+        this.setState({
+            time:Time
+        });
     }
 
     choosePic() {
@@ -72,12 +79,8 @@ export default class addDoc extends React.Component {
     }
 
     Upload(){
-        var Time=this.getTime();
-        this.setState({
-            time:Time
-        });
         upload(
-            Time+'.jpg',
+            this.state.time+'.jpg',
             'image/jpg',
             this.state.fPath)
             .then((resp) => {
@@ -93,7 +96,7 @@ export default class addDoc extends React.Component {
         m = m < 10 ? ('0' + m) : m;
         let second = date.getSeconds();
         second = second < 10 ? ('0' + second) : second;
-        return this.state.userid + h +m + second;
+        return USER.id + h +m + second;
     }
 
     getDate(){
@@ -106,7 +109,9 @@ export default class addDoc extends React.Component {
     }
 
     save(){
-        var request_url='http://10.206.40.5:3000/doc/add?date='+this.getDate()+'&sym='+this.state.sym+'&pic=https://upload-test-refrige.oss-cn-beijing.aliyuncs.com/'+this.state.time+'.jpg&userid='+this.state.userid;
+        if(this.state.user.id!==undefined){
+            var request_url='http://10.206.40.5:3000/doc/add?date='+this.getDate()+'&sym='+this.state.sym+'&pic=https://upload-test-refrige.oss-cn-beijing.aliyuncs.com/'+this.state.time+'.jpg&userid='+this.state.user.id;
+        }
         fetch(request_url, {
             method: 'GET',
         });

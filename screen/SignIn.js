@@ -32,19 +32,12 @@ export default class SignIn extends React.Component {
             .then(response=>response.json())
             .then((responseData)=>{
                 if(responseData.pass==this.state.pass){
-                    storage.save({
-                        key: 'loginState', // 注意:请不要在key中使用_下划线符号!
-                        data: {
-                            name:responseData.name,
-                            sex:responseData.sex.toString(),
-                            account:responseData.account,
-                            id:responseData.id.toString()
-                        },
-
-                        // 如果不指定过期时间，则会使用defaultExpires参数
-                        // 如果设为null，则永不过期
-                        expires: null,
-                    });
+                    global.USER={
+                        name:responseData.name,
+                        sex:responseData.sex.toString(),
+                        account:responseData.account,
+                        id:responseData.id.toString()
+                    };
                     this.props.navigation.goBack();
                 }
                 else{

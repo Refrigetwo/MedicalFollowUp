@@ -2,8 +2,7 @@ import React from 'react';
 import {Text, View, Button, Dimensions, FlatList, Image, StyleSheet, TouchableOpacity} from 'react-native';
 import Icon from "react-native-vector-icons/FontAwesome5";
 const {width} = Dimensions.get('window');
-var REQUEST_URL = "http://upload-test-refrige.oss-cn-beijing.aliyuncs.com/artical.json";
-var REQUEST_URL_NAME="http://10.206.40.5:3000/users/queryAll"
+
 
 export default class FollowUp extends React.Component {
     static navigationOptions={
@@ -16,6 +15,7 @@ export default class FollowUp extends React.Component {
             sex:'212',
             sym:'qweqweqw',
             data:[],
+            user:'',
             loaded:false,
         };
         this.fetchData = this.fetchData.bind(this);
@@ -26,7 +26,15 @@ export default class FollowUp extends React.Component {
         this.fetchData();
     }
     fetchData(){
-        fetch("http://10.206.40.5:3000/doc/query?id=3")
+        storage
+            .load({
+                key: 'loginState',
+            })
+            .then(ret => {
+                this.setState({ user: ret });
+            });
+        var REQUEST_URL="http://10.206.40.5:3000/doc/query?id="+this.state.user.id;
+        fetch(REQUEST_URL)
             .then(response=>response.json())
             .then((responseData)=>{
                 this.setState({

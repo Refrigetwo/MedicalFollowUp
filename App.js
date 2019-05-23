@@ -32,6 +32,13 @@ const storage = new Storage({
 });
 global.storage = storage;
 
+const USER={
+    id:'',
+    name:'',
+    sex:'',
+    account:''
+};
+global.USER=USER;
 
 const NewsStack= createStackNavigator({
     News:News,

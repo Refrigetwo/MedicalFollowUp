@@ -17,14 +17,7 @@ export default class FollowUp extends React.Component {
     };
 
     test(){
-        storage
-            .load({
-                key: 'loginState',
-            })
-            .then(ret => {
-                this.setState({ user: ret });
-            });
-        Alert.alert('信息',this.state.user.id);
+        Alert.alert('信息',USER.id);
     };
 
 
