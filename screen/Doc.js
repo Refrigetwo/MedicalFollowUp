@@ -42,7 +42,7 @@ export default class FollowUp extends React.Component {
             .then(ret => {
                 this.setState({ user: ret });
             });
-        var REQUEST_URL="http://10.206.40.5:3000/doc/query?id="+this.state.user.id;
+        var REQUEST_URL="http://10.0.0.2:3000/doc/query?id="+this.state.user.id;
         fetch(REQUEST_URL)
             .then(response=>response.json())
             .then((responseData)=>{

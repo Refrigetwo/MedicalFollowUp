@@ -5,12 +5,14 @@ import FollowUp from './screen/FollowUp.js';
 import Doc from './screen/Doc.js';
 import Mine from './screen/Mine.js';
 import NewsArt from "./screen/NewsArt";
-import SignUp from "./screen/SignUp";
 import SignIn from "./screen/SignIn";
 import Mail from './screen/Mail';
 import addDoc from './screen/addDoc';
 import editInfo from './screen/editInfo';import Storage from 'react-native-storage';
 import AsyncStorage from '@react-native-community/async-storage';
+
+const SERVER='http://10.206.40.5:3000/';
+global.SERVER=SERVER;
 
 const storage = new Storage({
     // 最大容量，默认值1000条数据循环存储
@@ -40,6 +42,8 @@ const USER={
 };
 global.USER=USER;
 
+
+
 const NewsStack= createStackNavigator({
     News:News,
     NewsArt:NewsArt
@@ -61,7 +65,7 @@ const MineStack= createStackNavigator({
     SignIn: SignIn
 });
 
-MineStack.navigationOptions = ({ navigation }) => {
+NewsStack.navigationOptions = ({ navigation }) => {
     let tabBarVisible = true;
     if (navigation.state.index > 0) {
         tabBarVisible = false;
@@ -82,6 +86,16 @@ FollowUpStack.navigationOptions = ({ navigation }) => {
 };
 
 DocStack.navigationOptions = ({ navigation }) => {
+    let tabBarVisible = true;
+    if (navigation.state.index > 0) {
+        tabBarVisible = false;
+    }
+    return {
+        tabBarVisible,
+    };
+};
+
+MineStack.navigationOptions = ({ navigation }) => {
     let tabBarVisible = true;
     if (navigation.state.index > 0) {
         tabBarVisible = false;

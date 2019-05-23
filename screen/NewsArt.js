@@ -13,8 +13,10 @@ export default class NewsArt extends React.Component {
         },
     };
     render() {
+        const { navigation } = this.props;
+        const LINK = navigation.getParam('link', '');
         return (
-        <WebView javaScriptEnabled={true} source={{uri:"http://blog.refrigetwo.moe/exp1.html",method: "get"}}>
+        <WebView javaScriptEnabled={true} source={{uri:LINK,method: "get"}}>
 
         </WebView>
         );

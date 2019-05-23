@@ -1,8 +1,8 @@
 import React from 'react';
-import { Text, View, Image, Dimensions, StyleSheet, FlatList } from 'react-native';
+import {Text, View, Image, Dimensions, StyleSheet, FlatList, TouchableHighlight} from 'react-native';
 import Swiper from 'react-native-swiper';
 const {width} = Dimensions.get('window');
-var REQUEST_URL = "http://upload-test-refrige.oss-cn-beijing.aliyuncs.com/artical.json";
+var REQUEST_URL = "http://10.0.0.2:3000/news/query?count=4";
 
 export default class News extends React.Component {
     static navigationOptions={
@@ -15,6 +15,7 @@ export default class News extends React.Component {
             loaded:false,
         };
         this.fetchData = this.fetchData.bind(this);
+        this.renderMovie = this.renderMovie.bind(this);
         //this.state = this.state.bind(this);
     }
     componentDidMount() {
@@ -25,7 +26,7 @@ export default class News extends React.Component {
             .then(response=>response.json())
             .then((responseData)=>{
                 this.setState({
-                    data:this.state.data.concat(responseData.movies),
+                    data:this.state.data.concat(responseData),
                     loaded:true,
                 });
             });
@@ -33,16 +34,20 @@ export default class News extends React.Component {
     }
     renderMovie({item}){
         return(
-            <View style={styles.Flatcontainer}>
-                <Image
-                    source={{uri:item.posters.thumbnail}}
-                    style={styles.thumbnail}
-                />
-                <View style={styles.rightContainer}>
-                    <Text style={styles.title}>{item.title}</Text>
-                    <Text style={styles.info}>{item.info}</Text>
+            <TouchableHighlight underlayColor={'#999999'} onPress={()=>this.props.navigation.navigate('NewsArt',{
+                link:item.link
+            })}>
+                <View style={styles.Flatcontainer}>
+                    <Image
+                        source={{uri:item.pic}}
+                        style={styles.thumbnail}
+                    />
+                    <View style={styles.rightContainer}>
+                        <Text style={styles.title}>{item.title}</Text>
+                        <Text style={styles.info}>{item.info}</Text>
+                    </View>
                 </View>
-            </View>
+            </TouchableHighlight>
         );
     }
     _separator = () => {
@@ -58,7 +63,7 @@ export default class News extends React.Component {
                         <Image source={require('../images/3.png')}/>
                     </Swiper>
                 </View>
-                <View>
+                <View style={{height:555}}>
                     <FlatList
                         ItemSeparatorComponent={this._separator}
                         data={this.state.data}

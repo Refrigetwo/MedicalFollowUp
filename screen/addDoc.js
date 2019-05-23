@@ -118,7 +118,7 @@ export default class addDoc extends React.Component {
 
     save(){
         if(this.state.user.id!==undefined){
-            var request_url='http://10.206.40.5:3000/doc/add?date='+this.getDate()+'&sym='+this.state.sym+'&pic=https://upload-test-refrige.oss-cn-beijing.aliyuncs.com/'+this.state.time+'.jpg&userid='+this.state.user.id;
+            var request_url='http://10.0.0.2:3000/doc/add?date='+this.getDate()+'&sym='+this.state.sym+'&pic=https://upload-test-refrige.oss-cn-beijing.aliyuncs.com/'+this.state.time+'.jpg&userid='+this.state.user.id;
         }
         fetch(request_url, {
             method: 'GET',
