@@ -13,7 +13,6 @@ export default class FollowUp extends React.Component {
         this.state = {
             name:'121',
             sex:'212',
-            sym:'qweqweqw',
             data:[],
             user:'',
             loaded:false,
@@ -22,11 +21,21 @@ export default class FollowUp extends React.Component {
         this.renderMovie = this.renderMovie.bind(this);
         //this.state = this.state.bind(this);
     }
-    componentDidMount() {
+    async componentDidMount() {
+        await storage
+            .load({
+                key: 'loginState',
+            })
+            .then(ret => {
+                this.setState({
+                    name: ret.name,
+                    sex: ret.sex
+                });
+            });
         this.fetchData();
     }
-    fetchData(){
-        storage
+    async fetchData(){
+        await storage
             .load({
                 key: 'loginState',
             })
@@ -52,7 +61,7 @@ export default class FollowUp extends React.Component {
                     style={styles.thumbnail}
                 />
                 <View style={styles.rightContainer}>
-                   <TouchableOpacity onPress={()=>this.props.navigation.navigate('Mail')}>
+                   <TouchableOpacity onPress={()=>this.props.navigation.navigate('Mail',)}>
                         <Icon name="pen"  size={20} color="#000000" />
                     </TouchableOpacity>
 
@@ -76,16 +85,12 @@ export default class FollowUp extends React.Component {
                         <View>
                             <Text style={{fontSize: 25}}>{this.state.name}</Text>
                             <Text style={{fontSize: 20}}>{this.state.sex}</Text>
-                            <Text style={{fontSize: 20}}>{this.state.sym}</Text>
-                        </View>
-                        <View>
-                            <TouchableOpacity onPress={()=>this.props.navigation.navigate('NewsArt')}>
-                            <Icon name="pen"  size={20} color="#000000" />
-                            </TouchableOpacity>
                         </View>
                     </View>
                     <View style={{height:2,backgroundColor:'#b5b5b5'}}/>
-                    <Button title='添加检查报告' onPress={()=>this.props.navigation.navigate('addDoc')}/>
+                    <Button title='添加检查报告' onPress={()=>this.props.navigation.navigate('addDoc',{
+                        onGoBack: ()=>this.fetchData(),
+                    })}/>
                     <View style={{height:2,backgroundColor:'#b5b5b5'}}/>
                 </View>
                 <View style={{height:455}}>

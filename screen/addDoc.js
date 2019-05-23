@@ -46,10 +46,7 @@ export default class addDoc extends React.Component {
     }
 
     componentDidMount() {
-        var Time=this.getTime();
-        this.setState({
-            time:Time
-        });
+
     }
 
     choosePic() {
@@ -78,9 +75,11 @@ export default class addDoc extends React.Component {
         });
     }
 
-    Upload(){
+    async Upload(){
+        await this.getTime();
+        var Time=this.state.time;
         upload(
-            this.state.time+'.jpg',
+            Time+'.jpg',
             'image/jpg',
             this.state.fPath)
             .then((resp) => {
@@ -88,15 +87,24 @@ export default class addDoc extends React.Component {
             })
     }
 
-    getTime(){
-        let date = new Date();
-        let h=date.getHours();
-        h = h < 10 ? ('0' + h) : h;
-        let m=date.getMinutes();
-        m = m < 10 ? ('0' + m) : m;
-        let second = date.getSeconds();
-        second = second < 10 ? ('0' + second) : second;
-        return USER.id + h +m + second;
+    async getTime(){
+        await storage
+            .load({
+                key: 'loginState',
+            })
+            .then(ret => {
+                this.setState({ user: ret });
+                let date = new Date();
+                let h=date.getHours();
+                h = h < 10 ? ('0' + h) : h;
+                let m=date.getMinutes();
+                m = m < 10 ? ('0' + m) : m;
+                let second = date.getSeconds();
+                second = second < 10 ? ('0' + second) : second;
+                this.setState({
+                    time:ret.id + h + m + second
+                });
+            });
     }
 
     getDate(){
@@ -115,7 +123,8 @@ export default class addDoc extends React.Component {
         fetch(request_url, {
             method: 'GET',
         });
-        this.props.navigation.navigate('Doc');
+        this.props.navigation.state.params.onGoBack();
+        this.props.navigation.goBack();
     }
 
     render(){

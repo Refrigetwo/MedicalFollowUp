@@ -38,6 +38,19 @@ export default class SignIn extends React.Component {
                         account:responseData.account,
                         id:responseData.id.toString()
                     };
+                    storage.save({
+                        key: 'loginState', // 注意:请不要在key中使用_下划线符号!
+                        data: {
+                            name:responseData.name,
+                            sex:responseData.sex.toString(),
+                            account:responseData.account,
+                            id:responseData.id.toString()
+                        },
+
+                        // 如果不指定过期时间，则会使用defaultExpires参数
+                        // 如果设为null，则永不过期
+                        expires: null,
+                    });
                     this.props.navigation.goBack();
                 }
                 else{
