@@ -1,5 +1,5 @@
 import React from 'react';
-import {Text, View, Button, Dimensions, FlatList, Image, StyleSheet, TouchableOpacity} from 'react-native';
+import {Text, View, Button, Dimensions, FlatList, Image, StyleSheet, TouchableOpacity, RefreshControl} from 'react-native';
 import Icon from "react-native-vector-icons/FontAwesome5";
 const {width} = Dimensions.get('window');
 
@@ -16,11 +16,21 @@ export default class FollowUp extends React.Component {
             data:[],
             user:'',
             loaded:false,
+            refreshing: false,
         };
         this.fetchData = this.fetchData.bind(this);
         this.renderMovie = this.renderMovie.bind(this);
+        this._onRefresh = this._onRefresh.bind(this);
         //this.state = this.state.bind(this);
     }
+
+    _onRefresh = () => {
+        this.setState({refreshing: true});
+        this.fetchData().then(() => {
+            this.setState({refreshing: false});
+        });
+    };
+
     async componentDidMount() {
         await storage
             .load({
@@ -42,10 +52,13 @@ export default class FollowUp extends React.Component {
             .then(ret => {
                 this.setState({ user: ret });
             });
-        var REQUEST_URL="http://10.0.0.2:3000/doc/query?id="+this.state.user.id;
+        var REQUEST_URL="http://10.0.2.2:3000/doc/query?id="+this.state.user.id;
         fetch(REQUEST_URL)
             .then(response=>response.json())
             .then((responseData)=>{
+                this.setState({
+                    data:[]
+                });
                 this.setState({
                     data:this.state.data.concat(responseData),
                     loaded:true,
@@ -95,6 +108,12 @@ export default class FollowUp extends React.Component {
                 </View>
                 <View style={{height:455}}>
                     <FlatList
+                        refreshControl={
+                            <RefreshControl
+                                refreshing={this.state.refreshing}
+                                onRefresh={this._onRefresh}
+                            />
+                        }
                         ItemSeparatorComponent={this._separator}
                         data={this.state.data}
                         renderItem={this.renderMovie}

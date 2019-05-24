@@ -1,8 +1,8 @@
 import React from 'react';
-import {Text, View, Image, Dimensions, StyleSheet, FlatList, TouchableHighlight} from 'react-native';
+import {Text, View, Image, Dimensions, StyleSheet, FlatList, TouchableHighlight, RefreshControl} from 'react-native';
 import Swiper from 'react-native-swiper';
 const {width} = Dimensions.get('window');
-var REQUEST_URL = "http://10.0.0.2:3000/news/query?count=4";
+var REQUEST_URL = "http://10.0.2.2:3000/news/query?count=4";
 
 export default class News extends React.Component {
     static navigationOptions={
@@ -25,6 +25,9 @@ export default class News extends React.Component {
         fetch(REQUEST_URL)
             .then(response=>response.json())
             .then((responseData)=>{
+                this.setState({
+                    data:[]
+                });
                 this.setState({
                     data:this.state.data.concat(responseData),
                     loaded:true,

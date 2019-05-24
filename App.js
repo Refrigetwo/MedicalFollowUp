@@ -8,7 +8,7 @@ import NewsArt from "./screen/NewsArt";
 import SignIn from "./screen/SignIn";
 import Mail from './screen/Mail';
 import addDoc from './screen/addDoc';
-import editInfo from './screen/editInfo';import Storage from 'react-native-storage';
+import Storage from 'react-native-storage';
 import AsyncStorage from '@react-native-community/async-storage';
 
 const SERVER='http://10.206.40.5:3000/';
@@ -57,7 +57,6 @@ const FollowUpStack= createStackNavigator({
 const DocStack= createStackNavigator({
     Doc:Doc,
     addDoc:addDoc,
-    editInfo:editInfo
 });
 
 const MineStack= createStackNavigator({
