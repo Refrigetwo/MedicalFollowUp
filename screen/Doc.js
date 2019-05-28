@@ -2,6 +2,7 @@ import React from 'react';
 import {Text, View, Button, Dimensions, FlatList, Image, StyleSheet, TouchableOpacity, RefreshControl} from 'react-native';
 import Icon from "react-native-vector-icons/FontAwesome5";
 const {width} = Dimensions.get('window');
+import RNCalendarEvents from 'react-native-calendar-events';
 
 
 export default class FollowUp extends React.Component {

@@ -5139,6 +5139,11 @@ react-lifecycles-compat@^3.0.4:
   resolved "http://registry.npm.taobao.org/react-lifecycles-compat/download/react-lifecycles-compat-3.0.4.tgz#4f1a273afdfc8f3488a8c516bfda78f872352362"
   integrity sha1-TxonOv38jzSIqMUWv9p4+HI1I2I=
 
+react-native-calendar-events@^1.7.1:
+  version "1.7.1"
+  resolved "https://registry.npm.taobao.org/react-native-calendar-events/download/react-native-calendar-events-1.7.1.tgz#177dcac0a3c711f1190ce107f6299e47aabba645"
+  integrity sha1-F33KwKPHEfEZDOEH9imeR6q7pkU=
+
 react-native-communications@2.2.1:
   version "2.2.1"
   resolved "https://registry.npm.taobao.org/react-native-communications/download/react-native-communications-2.2.1.tgz#7883b56b20a002eeb790c113f8616ea8692ca795"

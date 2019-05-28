@@ -108,7 +108,7 @@ const TabNavigator = createMaterialTopTabNavigator({
     资讯: NewsStack,
     随诊: FollowUpStack,
     档案: DocStack,
-    我的: MineStack
+    日程: MineStack
 }, {swipeEnabled: true,
     tabBarOptions:{
         indicatorStyle:{

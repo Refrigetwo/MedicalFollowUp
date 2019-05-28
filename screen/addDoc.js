@@ -15,8 +15,6 @@ var options = {
     }
 };
 
-
-
 export default class addDoc extends React.Component {
     static navigationOptions={
         title: '添加档案',
