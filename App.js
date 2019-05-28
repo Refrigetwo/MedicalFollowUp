@@ -10,6 +10,7 @@ import Mail from './screen/Mail';
 import addDoc from './screen/addDoc';
 import Storage from 'react-native-storage';
 import AsyncStorage from '@react-native-community/async-storage';
+import DateAlarm from './screen/DateAlarm';
 
 const SERVER='http://10.206.40.5:3000/';
 global.SERVER=SERVER;
@@ -61,7 +62,8 @@ const DocStack= createStackNavigator({
 
 const MineStack= createStackNavigator({
     Mine: Mine,
-    SignIn: SignIn
+    SignIn: SignIn,
+    DateAlarm: DateAlarm
 });
 
 NewsStack.navigationOptions = ({ navigation }) => {

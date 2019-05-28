@@ -19,7 +19,7 @@ export default class FollowUp extends React.Component {
             refreshing: false,
         };
         this.fetchData = this.fetchData.bind(this);
-        this.renderMovie = this.renderMovie.bind(this);
+        this.renderItem = this.renderItem.bind(this);
         this._onRefresh = this._onRefresh.bind(this);
         //this.state = this.state.bind(this);
     }
@@ -66,7 +66,7 @@ export default class FollowUp extends React.Component {
             });
 
     }
-    renderMovie({item}){
+    renderItem({item}){
         return(
             <View style={styles.Flatcontainer}>
                 <Image
@@ -116,7 +116,7 @@ export default class FollowUp extends React.Component {
                         }
                         ItemSeparatorComponent={this._separator}
                         data={this.state.data}
-                        renderItem={this.renderMovie}
+                        renderItem={this.renderItem}
                         style={styles.list}
                         keyExtractor={(item, index) => 'key'+index}
                     />

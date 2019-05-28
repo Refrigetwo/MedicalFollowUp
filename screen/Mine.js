@@ -35,6 +35,7 @@ export default class FollowUp extends React.Component {
                     <Text style={{fontSize:27}}>登录</Text>
                 </TouchableHighlight>
                 <Button title='测试' onPress={this.test}/>
+                <Button title='日历' onPress={()=>{this.props.navigation.navigate('DateAlarm')}}/>
             </View>
         );
     }
