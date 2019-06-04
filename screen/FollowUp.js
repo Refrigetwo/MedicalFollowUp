@@ -86,7 +86,7 @@ export default class FollowUp extends React.Component {
                             placeholder={'高压'}
                             placeholderTextColor={'#6b6e72'}
                         />
-                        <Text style={styles.text}>-</Text>
+
                         <TextInput
                             style={{width:70}}
                             onChangeText={(text) => this.setState({lowpre:text})}
