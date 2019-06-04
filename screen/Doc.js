@@ -1,5 +1,5 @@
 import React from 'react';
-import {Text, View, Button, Dimensions, FlatList, Image, StyleSheet, TouchableOpacity, RefreshControl} from 'react-native';
+import {Text, View, Button, Dimensions, FlatList, Image, StyleSheet, TouchableOpacity, RefreshControl, Alert} from 'react-native';
 import Icon from "react-native-vector-icons/FontAwesome5";
 const {width} = Dimensions.get('window');
 
@@ -37,6 +37,12 @@ export default class FollowUp extends React.Component {
                 key: 'loginState',
             })
             .then(ret => {
+                if(ret.sex==0){
+                    ret.sex='女'
+                }
+                if(ret.sex==1){
+                    ret.sex='男'
+                }
                 this.setState({
                     name: ret.name,
                     sex: ret.sex
@@ -106,7 +112,7 @@ export default class FollowUp extends React.Component {
                     })}/>
                     <View style={{height:2,backgroundColor:'#b5b5b5'}}/>
                 </View>
-                <View style={{height:455}}>
+                <View style={{height:470}}>
                     <FlatList
                         refreshControl={
                             <RefreshControl

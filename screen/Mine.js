@@ -34,8 +34,9 @@ export default class FollowUp extends React.Component {
                 <TouchableHighlight underlayColor={'#999999'} onPress={()=>{this.props.navigation.navigate('SignIn' )}}>
                     <Text style={{fontSize:27}}>登录</Text>
                 </TouchableHighlight>
-                <Button title='测试' onPress={this.test}/>
-                <Button title='日历' onPress={()=>{this.props.navigation.navigate('DateAlarm')}}/>
+                <TouchableHighlight underlayColor={'#999999'} onPress={()=>{this.props.navigation.navigate('DateAlarm')}}>
+                    <Text style={{fontSize:27}}>日程</Text>
+                </TouchableHighlight>
             </View>
         );
     }

@@ -45,10 +45,9 @@ export default class FollowUp extends React.Component {
     render(){
         return (
            <View style={styles.container}>
-               <View style={styles.bushucontainer}>
-                   <Text style={styles.bushu}>步数</Text>
-                   <Text style={styles.num}>2500</Text>
-                   <Text style={styles.target}>目标：10000</Text>
+               <View style={styles.normalcontainer}>
+                   <Text style={styles.text}>血压</Text>
+                   <Text style={styles.text}>100 - 130</Text>
                </View>
                <View style={styles.line}/>
                <View style={styles.normalcontainer}>

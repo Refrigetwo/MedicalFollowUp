@@ -2,7 +2,7 @@ import React from 'react';
 import {Text, View, Image, Dimensions, StyleSheet, FlatList, TouchableHighlight, RefreshControl} from 'react-native';
 import Swiper from 'react-native-swiper';
 const {width} = Dimensions.get('window');
-var REQUEST_URL = "http://10.0.2.2:3000/news/query?count=4";
+var REQUEST_URL = "http://10.0.2.2:3000/news/query?count=5";
 
 export default class News extends React.Component {
     static navigationOptions={
@@ -61,7 +61,7 @@ export default class News extends React.Component {
             <View style={styles.container}>
                 <View style={styles.swiper}>
                     <Swiper autoplay={true} width={width} showButton={false}>
-                        <Image source={require('../images/1.png')}/>
+                        <Image source={require('../images/4.png')}/>
                         <Image source={require('../images/2.png')}/>
                         <Image source={require('../images/3.png')}/>
                     </Swiper>

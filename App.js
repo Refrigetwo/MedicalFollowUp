@@ -11,6 +11,9 @@ import addDoc from './screen/addDoc';
 import Storage from 'react-native-storage';
 import AsyncStorage from '@react-native-community/async-storage';
 import DateAlarm from './screen/DateAlarm';
+import DateList from './screen/DateList';
+import newMed from './screen/newMed'
+import newSch from './screen/newSch'
 
 const SERVER='http://10.206.40.5:3000/';
 global.SERVER=SERVER;
@@ -63,7 +66,10 @@ const DocStack= createStackNavigator({
 const MineStack= createStackNavigator({
     Mine: Mine,
     SignIn: SignIn,
-    DateAlarm: DateAlarm
+    DateAlarm: DateAlarm,
+    DateList: DateList,
+    newMed:newMed,
+    newSch:newSch,
 });
 
 NewsStack.navigationOptions = ({ navigation }) => {

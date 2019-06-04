@@ -1,5 +1,5 @@
 import React from 'react';
-import {Text, View, Button, Dimensions, FlatList, Image, StyleSheet, TouchableOpacity, RefreshControl} from 'react-native';
+import {Text, View, Button, Dimensions, FlatList, Image, StyleSheet, TouchableOpacity, RefreshControl, Alert} from 'react-native';
 import Icon from "react-native-vector-icons/FontAwesome5";
 const {width} = Dimensions.get('window');
 import {Calendar, CalendarList, Agenda} from 'react-native-calendars';
@@ -17,7 +17,16 @@ export default class DateAlarm extends React.Component {
     static navigationOptions={
         header:null,
     };
-
+    static navigationOptions={
+        title: '日程',
+        headerStyle: {
+            backgroundColor: '#2e74ff',
+        },
+        headerTintColor: '#fff',
+        headerTitleStyle: {
+            fontWeight: 'bold',
+        },
+    };
 
     render() {
         const vacation = {key:'vacation', color: 'red', selectedDotColor: 'blue'};
@@ -26,8 +35,8 @@ export default class DateAlarm extends React.Component {
         return (
             <CalendarList
                 markedDates={{
-                    '2019-05-25': {dots: [vacation, massage, workout], selected: true, selectedColor: 'red'},
-                    '2019-05-26': {dots: [massage, workout], disabled: true}
+                    '2019-06-18': {dots: [vacation, workout] },
+                    '2019-05-26': {dots: [massage, workout],}
                 }}
                 markingType={'multi-dot'}
                 // Callback which gets executed when visible months change in scroll view. Default = undefined
@@ -41,7 +50,9 @@ export default class DateAlarm extends React.Component {
                 // Enable or disable vertical scroll indicator. Default = false
                 showScrollIndicator={true}
 
-                onDayPress={(day) => {this.props.navigation.navigate('Doc')}}
+                onDayPress={(day) => {this.props.navigation.navigate('DateList',{
+                    day:day
+                })}}
 
             />
         );
