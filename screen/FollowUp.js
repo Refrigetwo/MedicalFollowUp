@@ -78,7 +78,9 @@ export default class FollowUp extends React.Component {
         return (
            <View style={styles.container}>
                <View style={styles.normalcontainer}>
-                   <Text style={styles.text}>血压</Text>
+                   <TouchableHighlight underlayColor={'#999999'} onPress={()=>{this.props.navigation.navigate('Info' )}}>
+                        <Text style={styles.text}>血压</Text>
+                   </TouchableHighlight>
                    <View style={{flexDirection: 'row'}}>
                         <TextInput
                             style={{width:70}}

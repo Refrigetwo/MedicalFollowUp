@@ -17,6 +17,7 @@ import newSch from './screen/newSch';
 import mailList from './screen/mailList';
 import newMail from './screen/newMail';
 import mailInfo from './screen/mailInfo'
+import Info from './screen/Info'
 
 const SERVER='http://10.206.40.5:3000/';
 global.SERVER=SERVER;
@@ -56,6 +57,7 @@ const NewsStack= createStackNavigator({
 const FollowUpStack= createStackNavigator({
     FollowUp:FollowUp,
     Mail:Mail,
+    Info:Info,
     mailList:mailList,
     newMail:newMail,
     mailInfo:mailInfo
