@@ -1,10 +1,9 @@
 import React from 'react';
-import { Text, View, Button } from 'react-native';
-import { GiftedChat } from "react-native-gifted-chat";
+import {Text, View, Button, TouchableHighlight} from 'react-native';
 
 export default class Mail extends React.Component {
     state = {
-        messages: []
+
     };
 
     static navigationOptions={
@@ -19,37 +18,20 @@ export default class Mail extends React.Component {
     };
 
     componentWillMount() {
-        this.setState({
-            messages: [
-                {
-                    _id: 1,
-                    text: "Hello developer",
-                    createdAt: new Date(),
-                    user: {
-                        _id: 2,
-                        name: "React Native",
-                        avatar: "https://placeimg.com/140/140/any"
-                    }
-                }
-            ]
-        });
-    }
 
-    onSend(messages = []) {
-        this.setState(previousState => ({
-            messages: GiftedChat.append(previousState.messages, messages)
-        }));
     }
 
     render() {
         return (
-            <GiftedChat
-                messages={this.state.messages}
-                onSend={messages => this.onSend(messages)}
-                user={{
-                    _id: 1
-                }}
-            />
+            <View style={{alignItems:'center'}}>
+                <TouchableHighlight underlayColor={'#999999'} onPress={()=>{this.props.navigation.navigate('mailList' )}}>
+                    <Text style={{fontSize:27}}>收件箱</Text>
+                </TouchableHighlight>
+                <View style={{height:30,backgroundColor:'#b5b5b5'}}/>
+                <TouchableHighlight underlayColor={'#999999'} onPress={()=>{this.props.navigation.navigate('newMail' )}}>
+                    <Text style={{fontSize:27}}>新邮件</Text>
+                </TouchableHighlight>
+            </View>
         );
     }
 }

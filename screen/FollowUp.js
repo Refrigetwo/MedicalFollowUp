@@ -133,8 +133,10 @@ export default class FollowUp extends React.Component {
                    <Icon name="mail"  size={30} color="#01a699" />
                </TouchableOpacity>
                <View style={{height:100,backgroundColor:'#b5b5b5'}}/>
-               <Button title='保存'
-                       onPress={this.save}
+               <Button
+                   style={{width:130,height:70}}
+                   title='保存'
+                   onPress={this.save}
                />
            </View>
 

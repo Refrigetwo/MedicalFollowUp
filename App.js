@@ -12,8 +12,11 @@ import Storage from 'react-native-storage';
 import AsyncStorage from '@react-native-community/async-storage';
 import DateAlarm from './screen/DateAlarm';
 import DateList from './screen/DateList';
-import newMed from './screen/newMed'
-import newSch from './screen/newSch'
+import newMed from './screen/newMed';
+import newSch from './screen/newSch';
+import mailList from './screen/mailList';
+import newMail from './screen/newMail';
+import mailInfo from './screen/mailInfo'
 
 const SERVER='http://10.206.40.5:3000/';
 global.SERVER=SERVER;
@@ -32,9 +35,6 @@ const storage = new Storage({
     // 读写时在内存中缓存数据。默认启用。
     enableCache: true, // 你可以在构造函数这里就写好sync的方法 // 或是在任何时候，直接对storage.sync进行赋值修改 // 或是写到另一个文件里，这里require引入
 
-    // 如果storage中没有相应数据，或数据已过期，
-    // 则会调用相应的sync方法，无缝返回最新数据。
-    // sync方法的具体说明会在后文提到
 });
 global.storage = storage;
 
@@ -55,7 +55,10 @@ const NewsStack= createStackNavigator({
 
 const FollowUpStack= createStackNavigator({
     FollowUp:FollowUp,
-    Mail:Mail
+    Mail:Mail,
+    mailList:mailList,
+    newMail:newMail,
+    mailInfo:mailInfo
 });
 
 const DocStack= createStackNavigator({
