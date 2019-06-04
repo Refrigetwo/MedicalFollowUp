@@ -2,7 +2,7 @@ import React from 'react';
 import {Text, View, Image, Dimensions, StyleSheet, FlatList, TouchableHighlight, RefreshControl} from 'react-native';
 import Swiper from 'react-native-swiper';
 const {width} = Dimensions.get('window');
-var REQUEST_URL = "http://10.0.2.2:3000/message/query?id=2&flag=1";
+var REQUEST_URL = "http://10.128.199.8:3000/message/query?id=2&flag=1";
 
 export default class mailList extends React.Component {
     static navigationOptions={

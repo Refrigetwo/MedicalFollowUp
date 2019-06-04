@@ -39,7 +39,7 @@ export default class newMed extends React.Component {
     }
 
     save(){
-        var request_url='http://10.0.2.2:3000/sch/add?type=0&content='+this.state.medicine+this.state.content+'&ba='+this.state.ba+'&fre='+this.state.freq+'&date='+this.state.Day.dateString+'&id='+this.state.user_id;
+        var request_url='http://10.128.199.8:3000/sch/add?type=0&content='+this.state.medicine+this.state.content+'&ba='+this.state.ba+'&fre='+this.state.freq+'&date='+this.state.Day.dateString+'&id='+this.state.user_id;
         fetch(request_url, {
             method: 'GET',
         });

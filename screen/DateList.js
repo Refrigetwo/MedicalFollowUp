@@ -59,7 +59,7 @@ export default class DateList extends React.Component{
         this.setState({
             tDay:tDay
         });
-        var REQUEST_URL="http://10.0.2.2:3000/sch/query?id="+this.state.user.id+'&date='+tDay.dateString;
+        var REQUEST_URL="http://10.128.199.8:3000/sch/query?id="+this.state.user.id+'&date='+tDay.dateString;
         fetch(REQUEST_URL)
             .then(response=>response.json())
             .then((responseData)=>{

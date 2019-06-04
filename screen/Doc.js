@@ -58,7 +58,7 @@ export default class FollowUp extends React.Component {
             .then(ret => {
                 this.setState({ user: ret });
             });
-        var REQUEST_URL="http://10.0.2.2:3000/doc/query?id="+this.state.user.id;
+        var REQUEST_URL="http://10.128.199.8:3000/doc/query?id="+this.state.user.id;
         fetch(REQUEST_URL)
             .then(response=>response.json())
             .then((responseData)=>{
@@ -112,7 +112,7 @@ export default class FollowUp extends React.Component {
                     })}/>
                     <View style={{height:2,backgroundColor:'#b5b5b5'}}/>
                 </View>
-                <View style={{height:470}}>
+                <View style={{height:540}}>
                     <FlatList
                         refreshControl={
                             <RefreshControl

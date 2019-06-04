@@ -68,7 +68,7 @@ export default class FollowUp extends React.Component {
     }
 
     save(){
-        var request_url='http://10.0.2.2:3000/info/add?date=2019-06-07&highpre='+this.state.highpre+'&lowpre='+this.state.lowpre+'&mass='+this.state.mass+'&heart='+this.state.heart+'&sleep0h='+this.state.hour1+'&sleep0m='+this.state.minute1+'&sleep1h='+this.state.hour2+'&sleep1m='+this.state.minute2+'&user_id=2';
+        var request_url='http://10.128.199.8:3000/info/add?date=2019-06-07&highpre='+this.state.highpre+'&lowpre='+this.state.lowpre+'&mass='+this.state.mass+'&heart='+this.state.heart+'&sleep0h='+this.state.hour1+'&sleep0m='+this.state.minute1+'&sleep1h='+this.state.hour2+'&sleep1m='+this.state.minute2+'&user_id=2';
         fetch(request_url, {
             method: 'GET',
         });

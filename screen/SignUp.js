@@ -24,7 +24,7 @@ export default class SignUp extends React.Component {
     };
 
     onPress () {
-        var request_url='http://10.0.2.2:3000/users/addUser?id=7&name=李'+this.state.account+'&sex=1&account='+this.state.account+'&pass='+this.state.pass;
+        var request_url='http://10.128.199.8:3000/users/addUser?id=7&name=李'+this.state.account+'&sex=1&account='+this.state.account+'&pass='+this.state.pass;
         fetch(request_url, {
             method: 'GET',
         });

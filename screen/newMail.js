@@ -39,7 +39,7 @@ export default class newMail extends React.Component {
     }
 
     save(){
-        var request_url='http://10.0.2.2:3000/message/add?doctor='+this.state.doctor+'&uid=2'+'&date='+this.getDate()+'&con='+this.state.con+'&flag=0';
+        var request_url='http://10.128.199.8:3000/message/add?doctor='+this.state.doctor+'&uid=2'+'&date='+this.getDate()+'&con='+this.state.con+'&flag=0';
         fetch(request_url, {
             method: 'GET',
         });

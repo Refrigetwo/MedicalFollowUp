@@ -25,7 +25,7 @@ export default class SignIn extends React.Component {
     };
 
     onPress () {
-        var request_url='http://10.0.2.2:3000/users/query?account='+this.state.account;
+        var request_url='http://10.128.199.8:3000/users/query?account='+this.state.account;
         fetch(request_url,{
             method: 'GET',
         })

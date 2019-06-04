@@ -57,7 +57,7 @@ export default class newSch extends React.Component {
                 this.setState({ user: ret });
                 });
         if(this.state.user.id!==undefined){
-            var request_url='http://10.0.2.2:3000/sch/add?type=2&content='+this.state.content+'&time='+this.state.hour+':'+this.state.minute+'&date='+this.state.Day.dateString+'&id='+this.state.user_id;
+            var request_url='http://10.128.199.8:3000/sch/add?type=2&content='+this.state.content+'&time='+this.state.hour+':'+this.state.minute+'&date='+this.state.Day.dateString+'&id='+this.state.user_id;
         }
         fetch(request_url, {
             method: 'GET',

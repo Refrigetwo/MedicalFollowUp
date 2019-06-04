@@ -120,7 +120,7 @@ const TabNavigator = createMaterialTopTabNavigator({
     随诊: FollowUpStack,
     档案: DocStack,
     我的: MineStack
-}, {swipeEnabled: true,
+}, {swipeEnabled: false,
     tabBarOptions:{
         indicatorStyle:{
             backgroundColor: "white",

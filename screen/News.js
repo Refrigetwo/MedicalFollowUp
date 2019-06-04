@@ -2,7 +2,7 @@ import React from 'react';
 import {Text, View, Image, Dimensions, StyleSheet, FlatList, TouchableHighlight, RefreshControl} from 'react-native';
 import Swiper from 'react-native-swiper';
 const {width} = Dimensions.get('window');
-var REQUEST_URL = "http://10.0.2.2:3000/news/query?count=5";
+var REQUEST_URL = "http://10.128.199.8:3000/news/query?count=5";
 
 export default class News extends React.Component {
     static navigationOptions={
